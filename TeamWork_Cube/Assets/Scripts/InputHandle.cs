@@ -193,29 +193,32 @@ public class InputHandle : MonoBehaviour
             //float deltaPosY = (Input.mousePosition - clickPosition).y / Screen.height;
             Vector3 deltaMousePosition = Input.mousePosition - lastMousePosition;
             //Debug.Log(deltaMousePosition);
-            ////Swipe
-            //if (deltaMousePosition.x > Screen.width * swipeSensitivity * Time.unscaledDeltaTime)
-            //{
-            //    cameraController.HorizontalStep(1);
-            //    clickPosition = Input.mousePosition;
-            //    currentSwipeReload = swipeReloadTime;
-            //}
-            //else if (deltaMousePosition.x < -Screen.width * swipeSensitivity * Time.unscaledDeltaTime)
-            //{
-            //    cameraController.HorizontalStep(-1);
-            //    clickPosition = Input.mousePosition;
-            //    currentSwipeReload = swipeReloadTime;
-            //}
-            //else if (deltaMousePosition.y > Screen.height * swipeSensitivity * Time.unscaledDeltaTime)
-            //{
-            //    cameraController.VerticalLookMode(true);
-            //}
-            //else if (deltaMousePosition.y < -Screen.height * swipeSensitivity * Time.unscaledDeltaTime)
-            //{
-            //    cameraController.VerticalLookMode(false);
-            //}
-            //lastMousePosition = Input.mousePosition;
+#if (UNITY_ANDROID || UNITY_IOS)
+            //Swipe
+            if (deltaMousePosition.x > Screen.width * swipeSensitivity * Time.unscaledDeltaTime)
+            {
+                cameraController.HorizontalStep(1);
+                clickPosition = Input.mousePosition;
+                currentSwipeReload = swipeReloadTime;
+            }
+            else if (deltaMousePosition.x < -Screen.width * swipeSensitivity * Time.unscaledDeltaTime)
+            {
+                cameraController.HorizontalStep(-1);
+                clickPosition = Input.mousePosition;
+                currentSwipeReload = swipeReloadTime;
+            }
+            else if (deltaMousePosition.y > Screen.height * swipeSensitivity * Time.unscaledDeltaTime)
+            {
+                cameraController.VerticalLookMode(true);
+            }
+            else if (deltaMousePosition.y < -Screen.height * swipeSensitivity * Time.unscaledDeltaTime)
+            {
+                cameraController.VerticalLookMode(false);
+            }
+            lastMousePosition = Input.mousePosition;
+#else
             cameraController.AdjustTargetRotation(deltaMousePosition.x, deltaMousePosition.y);
+#endif
         }
     }
 

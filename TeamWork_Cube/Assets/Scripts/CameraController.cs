@@ -25,8 +25,8 @@ public class CameraController : MonoBehaviour
     private Vector3 lastMousePos;
 
     //以下はHolmesによる追加（2017/12/15~18）
-    //private int horizontalRotationStep = 0; //12月22日にホームズにより削除。
-    //private bool viewFromBelow = false;
+    private int horizontalRotationStep = 0; //12月22日にホームズにより削除。
+    private bool viewFromBelow = false;
     private Vector3 horizontalTargetEulerRotation = Vector3.zero;
     private Vector3 pivotTargetEulerRotation = new Vector3(0, 30, 0);
 
@@ -38,33 +38,33 @@ public class CameraController : MonoBehaviour
     }
     //以上
 
-    //private void CalculateTargetRotationFromStep()
-    //{
-    //    horizontalTargetEulerRotation = new Vector3(0, 45 + 90 * horizontalRotationStep, 0);
-    //    float verticalAngle = 30;
-    //    if (viewFromBelow) verticalAngle = -verticalAngle;
-    //    pivotTargetEulerRotation = new Vector3(verticalAngle, 0, 0);
-    //}
+    private void CalculateTargetRotationFromStep()
+    {
+        horizontalTargetEulerRotation = new Vector3(0, 45 + 90 * horizontalRotationStep, 0);
+        float verticalAngle = 30;
+        if (viewFromBelow) verticalAngle = -verticalAngle;
+        pivotTargetEulerRotation = new Vector3(verticalAngle, 0, 0);
+    }
 
-    //public void HorizontalStep(int amount)
-    //{
-    //    Debug.Log("Horizontal step " + amount);
-    //    horizontalRotationStep += amount;
-    //    while (horizontalRotationStep >= 4) horizontalRotationStep -= 4;
-    //    while (horizontalRotationStep < 0) horizontalRotationStep += 4;
-    //}
+    public void HorizontalStep(int amount)
+    {
+        Debug.Log("Horizontal step " + amount);
+        horizontalRotationStep += amount;
+        while (horizontalRotationStep >= 4) horizontalRotationStep -= 4;
+        while (horizontalRotationStep < 0) horizontalRotationStep += 4;
+    }
 
-    //public void VerticalLookMode(bool willViewFromBelow)
-    //{
-    //    if (willViewFromBelow) Debug.Log("Viewing From Below");
-    //    else Debug.Log("Viewing From Above");
-    //    viewFromBelow = willViewFromBelow;
-    //}
+    public void VerticalLookMode(bool willViewFromBelow)
+    {
+        if (willViewFromBelow) Debug.Log("Viewing From Below");
+        else Debug.Log("Viewing From Above");
+        viewFromBelow = willViewFromBelow;
+    }
 
     private void Update()
     {
 #if (UNITY_ANDROID || UNITY_IOS)
-        //CalculateTargetRotationFromStep();
+        CalculateTargetRotationFromStep();
         Quaternion targetQuat = Quaternion.Euler(horizontalTargetEulerRotation);
         Quaternion pivotQuat = Quaternion.Euler(pivotTargetEulerRotation);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetQuat, Time.deltaTime * 10);
