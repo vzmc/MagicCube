@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 52b2e91f2e2ea6a4a9d1d9b8058e261b
+timeCreated: 1511758689
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Mylodon
+  fontNames:
+  - Mylodon
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

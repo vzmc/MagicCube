@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1294671731424358}
+  m_IsPrefabParent: 1
+--- !u!1 &1294671731424358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4115653939690324}
+  - component: {fileID: 114170403225851984}
+  - component: {fileID: 114444530418822630}
+  - component: {fileID: 114521909445457878}
+  - component: {fileID: 114172702408633076}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4115653939690324
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1294671731424358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114170403225851984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1294671731424358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f236f843be83eb40969f16a0e4540c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube_Materials:
+  - {fileID: 2100000, guid: e5eeaf96e4f8a884a807ede20306bd3a, type: 2}
+  - {fileID: 2100000, guid: ff5d799347cd66341b22587457d2a820, type: 2}
+  - {fileID: 2100000, guid: 450e133eb75c6d94cbf08e24f8000b36, type: 2}
+  - {fileID: 2100000, guid: 2b466bede025c354aa8d821c5d6a9371, type: 2}
+  - {fileID: 2100000, guid: 730d0e0d177d8814881b5821ed757515, type: 2}
+  - {fileID: 2100000, guid: 9ed3a82d3353ab347870ce9e5df9579e, type: 2}
+  magicCube: {fileID: 0}
+  defaltMaxRound: 5
+  nowMaxRound: 0
+  increaseRound: 2
+  nowTurnText: {fileID: 0}
+  countDownText: {fileID: 0}
+  comboText: {fileID: 0}
+  colorCountText: {fileID: 0}
+  limitTimeText: {fileID: 0}
+  matchedCountText: {fileID: 0}
+  levelText: {fileID: 0}
+  scoreText: {fileID: 0}
+  levelUpEffect: {fileID: 0}
+  scorePerCube: 50
+  currentRound: 0
+  levelCount: 1
+  cube_Materials_List: []
+  ColorChangePerLevel: 2
+  MaxLevel: 15
+  ExpInterval: 10
+--- !u!114 &114172702408633076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1294671731424358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b7044c4be951d4587c282dece280d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isColorNumChanged: 0
+--- !u!114 &114444530418822630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1294671731424358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dabe710fc2e9f7438e4797995dc9072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraController: {fileID: 0}
+  magicCube: {fileID: 0}
+  faceSelectIndicator: {fileID: 0}
+  cellCursor: {fileID: 0}
+--- !u!114 &114521909445457878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1294671731424358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1fc3d06eca35f49bd8e7fb8599f54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 543e823ed7e19934fb6b67e9ff2366d8
+timeCreated: 1511762015
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Phage Rough
+  fontNames:
+  - Phage Rough
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
