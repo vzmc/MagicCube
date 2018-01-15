@@ -19,6 +19,7 @@ public class ScoreText : TextController
         {
             //桁越え防止
             score = 99999999;//9千9百9十9万9千9百9十9点
+            base.SetText("SCORE: " + score.ToString().PadLeft(8, '0'));//八桁
         }
     }
 }

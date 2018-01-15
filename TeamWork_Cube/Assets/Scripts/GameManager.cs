@@ -368,13 +368,15 @@ public class GameManager : MonoBehaviour
 
     public void CheckIfFinalTurn()
     {
+        int maxScore = 99999999;
+
         if (currentRound > nowMaxRound)
         {
             ArriveMaxTurnAction();
         }
-        else if (totalScore >= 99999999) //スコア爆発したら。。。
+        else if (totalScore >= maxScore) //スコア爆発したら。。。
         {
-            totalScore = 99999999; //最大値に固定(億には行かせない(￣▽￣)
+            totalScore = maxScore; //最大値に固定(億には行かせない(￣▽￣)
             ArriveMaxTurnAction();
         }
     }
