@@ -15,8 +15,6 @@ public class MagicCube : MonoBehaviour
     [SerializeField]
     private int rotateInterval = 5;             // 何ターンことに回転
     [SerializeField]
-    private RotationArrowDisplay rotationArrowDisplay;
-    [SerializeField]
     private float moveTime = 1;
     [SerializeField]
     private float limitTime = 1;

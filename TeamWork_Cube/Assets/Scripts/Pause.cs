@@ -9,6 +9,8 @@ public class Pause : MonoBehaviour
     private bool stopTime = false;
     public GameObject ui;   //表示するUI
 
+    private List<GameObject> objList;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -19,37 +21,62 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GamePause(true);
+            GamePause();
         }
 	}
 
-    private void GamePause(bool destoryUI)
+    public void GamePause()
     {
         if (!stopTime)
         {
             ui.SetActive(true);
+            CubeDisplay(false);
             Time.timeScale = 0;
         }
         else
         {
-            if (destoryUI)
-            {
-                ui.SetActive(false);
-            }
+            ui.SetActive(false);
+            CubeDisplay(true);
             Time.timeScale = 1;
         }
+        
         stopTime = !stopTime;
     }
 
     public void YesButtonPressed()
     {
-        GamePause(false);
+        GamePause();
         GetComponent<MoveScene>().ToScene("Title");
     }
 
     public void NoButtonPressed()
     {
-        GamePause(true);
+        GamePause();
     }
+
+    private void CubeDisplay(bool isDisplay)
+    {
+        GameObject[] tempArray = GameObject.FindGameObjectsWithTag("MainOBJinPlayScene");
+
+        objList = new List<GameObject>(tempArray);
+
+        if (!isDisplay)
+        {
+            foreach (var obj in objList)
+            {
+                obj.GetComponent<MeshRenderer>().enabled = false;
+            }
+
+        }
+        else
+        {
+            foreach (var obj in objList)
+            {
+                obj.GetComponent<MeshRenderer>().enabled = true;
+            }
+        }
+    }
+
+
 
 }

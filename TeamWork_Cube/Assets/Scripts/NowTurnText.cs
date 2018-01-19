@@ -18,7 +18,7 @@ public class NowTurnText : TextController
     {
         //base.SetText("Current Turn: " + nowTurn + " / " + nowMaxTurn + "\n" +
         //             "Remaining Turns: " + (nowMaxTurn - nowTurn + 1));
-        base.SetText("Turns\nLeft\n" + (nowMaxTurn - nowTurn + 1));
+        base.SetText("Turns\nLeft " + (nowMaxTurn - nowTurn + 1).ToString("00"));
 
 
     }
