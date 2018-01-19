@@ -7,9 +7,11 @@ public class Pause : MonoBehaviour
 {
     [SerializeField]
     private bool stopTime = false;
-    public GameObject ui;   //表示するUI
 
-    private List<GameObject> objList;
+    public GameObject ui;   //表示するUI
+    public GameObject mainCube;
+
+    private List<GameObject> objList = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
@@ -55,14 +57,14 @@ public class Pause : MonoBehaviour
     }
 
     private void CubeDisplay(bool isDisplay)
-    {
+    { 
         GameObject[] tempArray = GameObject.FindGameObjectsWithTag("MainOBJinPlayScene");
 
-        objList = new List<GameObject>(tempArray);
+        objList.AddRange(tempArray);
 
         if (!isDisplay)
         {
-            foreach (var obj in objList)
+            foreach (var obj in tempArray)
             {
                 obj.GetComponent<MeshRenderer>().enabled = false;
             }
@@ -70,7 +72,7 @@ public class Pause : MonoBehaviour
         }
         else
         {
-            foreach (var obj in objList)
+            foreach (var obj in tempArray)
             {
                 obj.GetComponent<MeshRenderer>().enabled = true;
             }
