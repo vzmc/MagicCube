@@ -181,7 +181,8 @@ AudioSource:
   m_GameObject: {fileID: 1303760301886150}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243690189524952608, guid: 166eed6d408196943891f1459e369cdf,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -311,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matchSound: {fileID: 8300000, guid: a941ef4085235094d9cb716d2e7adcd1, type: 3}
-  respawnSound: {fileID: 8300000, guid: 4bc71a3b845cf074aaee5fafb2b237ad, type: 3}
+  respawnSound: {fileID: 8300000, guid: 5b5eb2cb1c02cae4ba65d97c23d84fa3, type: 3}
   movementSound: {fileID: 8300000, guid: 8120edc580d0b0045b5cfb0782749636, type: 3}
   pitchVariation: 0.1
 --- !u!114 &114429837427261904
