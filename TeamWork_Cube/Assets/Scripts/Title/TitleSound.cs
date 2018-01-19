@@ -26,7 +26,7 @@ public class TitleSound : MonoBehaviour
         audio = GetComponent<AudioSource>();
         
         //オプションからの音量を受け取る
-        if (Default == false) audio.volume = ValueSet.SEVolume;
+        //if (Default == false) audio.volume = ValueSet.SEVolume;
     }
 	
 	// Update is called once per frame
