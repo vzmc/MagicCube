@@ -33,4 +33,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 TeamWork_Cube/Library/ShaderCache/
+<<<<<<< HEAD
 *.dwlt
+=======
+TeamWork_Cube/Assets/Materials/LevelUpEffect.mat
+TeamWork_Cube/Assets/sky5X/sky5X_skyboxes/sky5X6.mat
+>>>>>>> de57488b00e28f6303353203053d4898238dddd6
