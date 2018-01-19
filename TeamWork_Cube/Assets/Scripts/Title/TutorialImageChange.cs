@@ -10,6 +10,9 @@ public class TutorialImageChange : MonoBehaviour
     public static int videoNum; //17/11/27 熊木
     private int beforVideoNum;
 
+    private float loadTime;
+    private bool loadFlag;
+
     public GameObject mouseIcon, fingerIcon; //1218 何
 
     public GameObject VideoPanel;
@@ -17,7 +20,7 @@ public class TutorialImageChange : MonoBehaviour
 
     public static bool loadTextFlag = false; //動画を再生してるか
     private bool buttonTouch = false; 
-    public GameObject LoadText;
+    public Text LoadText;
     GameObject CannotClickPanel;
 
     // Use this for initialization
@@ -35,7 +38,7 @@ public class TutorialImageChange : MonoBehaviour
             fingerIcon.SetActive(false);
         }
 
-        LoadText.SetActive(false);
+        LoadText.enabled = false;
 
         showText.text = "左のアイコンを押せば\n説明を見れます";
 
@@ -48,6 +51,32 @@ public class TutorialImageChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //動画が4秒以上ロードしても再生されない時テキスト表示
+        if (loadFlag == true && MoviePlayer.mPlayer.isPrepared == false)
+        {
+            loadTime += Time.deltaTime;
+            if (loadTime > 4f)
+            {
+                LoadText.text = "この端末では\n再生できません";
+            }
+        }
+        else
+        {
+            loadTime = 0;
+            LoadText.text = "Now Loading...";
+        }
+
+        //ロードテキストの表示
+        if (loadTextFlag == false && buttonTouch == true) //再生されていない&ボタンが押されている
+        {
+            LoadText.enabled = true;
+        }
+        else
+        {
+            LoadText.enabled = false;
+        }
+
+        //フェード中にパネルを表示しないようにする
         if (OnVideo == true)
         {
             VideoPanel.SetActive(true);
@@ -55,15 +84,7 @@ public class TutorialImageChange : MonoBehaviour
         else
         {
             VideoPanel.SetActive(false);
-        }
-
-        if(loadTextFlag == false && buttonTouch == true) //再生されていない&ボタンが押されている
-        {
-            LoadText.SetActive(true);
-        }
-        else
-        {
-            LoadText.SetActive(false);
+            LoadText.enabled = false;
         }
     }
 
@@ -72,6 +93,11 @@ public class TutorialImageChange : MonoBehaviour
     {
         showText.text = "任意のブロックを\n左ボタンでドラッグすれば\n同じ面の中で動かせます";
         videoNum = 1;
+        if (videoNum != beforVideoNum)
+        {
+            loadFlag = true;
+        }
+        beforVideoNum = videoNum;
         buttonTouch = true;
     }
 
@@ -79,6 +105,11 @@ public class TutorialImageChange : MonoBehaviour
     {
         showText.text = "任意の位置で\n右ボタンでドラッグすれば\n視点を変えます";
         videoNum = 2;
+        if (videoNum != beforVideoNum)
+        {
+            loadFlag = true;
+        }
+        beforVideoNum = videoNum;
         buttonTouch = true;
     }
 
@@ -86,6 +117,11 @@ public class TutorialImageChange : MonoBehaviour
     {
         showText.text = "スクロールすれば\nキューブを\n拡大/縮小できます";
         videoNum = 3;
+        if (videoNum != beforVideoNum)
+        {
+            loadFlag = true;
+        }
+        beforVideoNum = videoNum;
         buttonTouch = true;
     }
 
@@ -94,7 +130,10 @@ public class TutorialImageChange : MonoBehaviour
     {
         showText.text = "ボム";
         videoNum = 4;
-
+        if (videoNum != beforVideoNum)
+        {
+            loadFlag = true;
+        }
         beforVideoNum = videoNum;
         buttonTouch = true;
     }
@@ -103,7 +142,10 @@ public class TutorialImageChange : MonoBehaviour
     {
         showText.text = "同色全消しボム";
         videoNum = 5;
-
+        if (videoNum != beforVideoNum)
+        {
+            loadFlag = true;
+        }
         buttonTouch = true;
         beforVideoNum = videoNum;
     }
@@ -115,6 +157,10 @@ public class TutorialImageChange : MonoBehaviour
         //メモリ不足対策
         Resources.UnloadUnusedAssets();
 
+        if (videoNum != beforVideoNum)
+        {
+            loadFlag = true;
+        }
         buttonTouch = true;
         beforVideoNum = videoNum;
     }
@@ -124,7 +170,10 @@ public class TutorialImageChange : MonoBehaviour
     {
         showText.text = "任意のブロックを\nドラッグすれば\n同じ面の中で動かせます";
         videoNum = 1;
-
+        if (videoNum != beforVideoNum)
+        {
+            loadFlag = true;
+        }
         buttonTouch = true;
         beforVideoNum = videoNum;
     }
@@ -137,6 +186,10 @@ public class TutorialImageChange : MonoBehaviour
         //メモリ不足対策
         Resources.UnloadUnusedAssets();
 
+        if (videoNum != beforVideoNum)
+        {
+            loadFlag = true;
+        }
         buttonTouch = true;
         beforVideoNum = videoNum;
     }

@@ -3,7 +3,7 @@ using UnityEngine.Video;
 
 public class MoviePlayer : MonoBehaviour
 {    
-    private VideoPlayer mPlayer;
+    public static VideoPlayer mPlayer;
     
     //public VideoClip AndroidRotation;
 
