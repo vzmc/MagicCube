@@ -234,4 +234,10 @@ public class RankingManager : MonoBehaviour
         }
     }
 
+    public void ResetJustLocalScore()
+    {
+        //ローカルリセット
+        PlayerPrefs.SetInt("score", 0);
+    }
+
 }

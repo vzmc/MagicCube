@@ -28,9 +28,16 @@ public class ResultText : MonoBehaviour
     public Text compareLogText; //スコア更新ログ
     public Button backButton;
 
+    //180119
+    private float textAlpha;
+    private bool flag_flash;
+
+
     // Use this for initialization
     void Start()
     {
+        textAlpha = 0;
+
         StartCoroutine(ScoreSendIterator());
         WriteText();
     }
@@ -38,6 +45,10 @@ public class ResultText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (highscoreText.enabled)
+        {
+            FlashText(highscoreText);
+        }
     }
 
     private void WriteText()
@@ -93,8 +104,8 @@ public class ResultText : MonoBehaviour
     {
         //ハイスコア登録処理が終わる前、遷移ボタンを無効化
         backButton.interactable = false;
-        var isHiscore = false;
         highscoreText.enabled = false;
+        var isHiscore = false;
         compareLogText.text = "Please Wait...";
 
 
@@ -142,5 +153,30 @@ public class ResultText : MonoBehaviour
 
         //ハイスコア登録処理が終わったので、遷移ボタンを有効化
         backButton.interactable = true;
+    }
+
+    private void FlashText(Text target)
+    {
+        target.color = new Color(target.color.r, target.color.b, target.color.g, textAlpha);
+        if (flag_flash)
+        {
+            textAlpha -= Time.deltaTime;
+        }
+        else
+        {
+            textAlpha += Time.deltaTime;
+        }
+
+        if (textAlpha <= 0)
+        {
+            textAlpha = 0;
+            flag_flash = false;
+        }
+        else if (textAlpha >= 1) 
+        {
+            textAlpha = 1;
+            flag_flash = true;
+
+        }
     }
 }
