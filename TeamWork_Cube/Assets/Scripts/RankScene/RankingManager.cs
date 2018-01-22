@@ -28,9 +28,14 @@ public class RankingManager : MonoBehaviour
 
     private bool isPlayerTop5 = false;
 
+    //Debug
+    public Text debugtext;
+
     // Use this for initialization
     void Start()
     {
+        Debug_NowLocalScore();
+
         StartCoroutine(LoadRanking());
     }
 
@@ -234,10 +239,15 @@ public class RankingManager : MonoBehaviour
         }
     }
 
-    public void ResetJustLocalScore()
+    public void Debug_ResetJustLocalScore()
     {
         //ローカルリセット
         PlayerPrefs.SetInt("score", 0);
+    }
+
+    public void Debug_NowLocalScore()
+    {
+        debugtext.text = PlayerPrefs.GetInt("score").ToString();
     }
 
 }
