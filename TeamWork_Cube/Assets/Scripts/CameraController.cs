@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour
 
     public void HorizontalStep(int amount)
     {
-        Debug.Log("Horizontal step " + amount);
+        //Debug.Log("Horizontal step " + amount);
         horizontalRotationStep += amount;
         while (horizontalRotationStep >= 4) horizontalRotationStep -= 4;
         while (horizontalRotationStep < 0) horizontalRotationStep += 4;
@@ -56,8 +56,8 @@ public class CameraController : MonoBehaviour
 
     public void VerticalLookMode(bool willViewFromBelow)
     {
-        if (willViewFromBelow) Debug.Log("Viewing From Below");
-        else Debug.Log("Viewing From Above");
+        //if (willViewFromBelow) Debug.Log("Viewing From Below");
+        //else Debug.Log("Viewing From Above");
         viewFromBelow = willViewFromBelow;
     }
 

@@ -184,20 +184,20 @@ public class CubeCell : MonoBehaviour
         color = gameManager.ColourFromLocalIndex( Random.Range(0, gameManager.Cube_Materials_List.Count));
         SetMaterial(gameManager.Cube_Materials[(int)color]);
         //以上
-        float randomRoll = Random.Range(0f, 1f);
-        if(randomRoll < colourClearChance)
-        {
-            CubeMode = CubeMode.ColourClear;
-        }
-        else if (randomRoll < lineClearChance)
-        {
-            CubeMode = CubeMode.LineClear;
-        }
-        else if (randomRoll < specialChance)
-        {
-            CubeMode = CubeMode.Bomb;
-        }
-        else CubeMode = CubeMode.Normal;
+        //float randomRoll = Random.Range(0f, 1f);
+        //if(randomRoll < colourClearChance)
+        //{
+        //    CubeMode = CubeMode.ColourClear;
+        //}
+        //else if (randomRoll < lineClearChance)
+        //{
+        //    CubeMode = CubeMode.LineClear;
+        //}
+        //else if (randomRoll < specialChance)
+        //{
+        //    CubeMode = CubeMode.Bomb;
+        //}
+        /*else*/ CubeMode = CubeMode.Normal;
     }
 
     /// <summary>
@@ -323,26 +323,26 @@ public class CubeCell : MonoBehaviour
 
     void OnLevelUp(int amount)
     {
-        if (isVanishing)
-        {
-            return;
-        }
-        for(int i = 0; i < amount; i++)
-        {
-            float randomRoll = Random.Range(0f, 1f);
-            if(randomRoll < colourClearChance)
-            {
-                CubeMode = CubeMode.ColourClear;
-            }
-            else if (randomRoll < lineClearChance)
-            {
-                CubeMode = CubeMode.LineClear;
-            }
-            else if(randomRoll < specialChance)
-            {
-                CubeMode = CubeMode.Bomb;
-            }
-        }
+        //if (isVanishing)
+        //{
+        //    return;
+        //}
+        //for(int i = 0; i < amount; i++)
+        //{
+        //    float randomRoll = Random.Range(0f, 1f);
+        //    if(randomRoll < colourClearChance)
+        //    {
+        //        CubeMode = CubeMode.ColourClear;
+        //    }
+        //    else if (randomRoll < lineClearChance)
+        //    {
+        //        CubeMode = CubeMode.LineClear;
+        //    }
+        //    else if(randomRoll < specialChance)
+        //    {
+        //        CubeMode = CubeMode.Bomb;
+        //    }
+        //}
     }
 
     //（10月20日、ホームズによる追加）
@@ -362,6 +362,65 @@ public class CubeCell : MonoBehaviour
             }
         }
         return output;
+    }
+
+    // 新関数（ホームズ　1月22日）
+    /// <summary>
+    /// 存在中の特殊ブロックの数
+    /// </summary>
+    /// <returns>今ある特殊ブロックの数</returns>
+    public static int numSpecialItems()
+    {
+        int output = 0;
+        foreach(CubeCell cc in allCubes)
+        {
+            if (cc.cubeMode != CubeMode.Normal) output++;
+        }
+        return output;
+    }
+
+    // 新関数（ホームズ　1月22日）
+    /// <summary>
+    /// らんだむに選ぶ一つの無地ブロックをランダムの特殊ブロックにする
+    /// </summary>
+    public static void SetRandomPowerup()
+    {
+        Debug.Log("Setting Random Powerup.");
+        if (numSpecialItems() >= 5 || //特殊ブロックを最大5つにする
+            numSpecialItems() >= allCubes.Count) return; //無地キューブがないと以下の処理を行わない
+        CubeCell selectedCube = allCubes[Random.Range(0, allCubes.Count - 1)];
+        int triesLeft = allCubes.Count * 10; //無限ループを防ぐため
+        while (selectedCube.cubeMode != CubeMode.Normal || selectedCube.isVanishing)
+        {
+            selectedCube = allCubes[Random.Range(0, allCubes.Count - 1)];
+            triesLeft--;
+            if (triesLeft <= 0)
+            {
+                Debug.Log("特殊道具が入っていないキューブは見つかりませんでした。");
+            }
+        }
+        selectedCube.SetAsSpecialBlock();
+    }
+
+    /// <summary>
+    /// このブロックを特殊ブロックにする
+    /// </summary>
+    public void SetAsSpecialBlock()
+    {
+        float randomRoll = Random.Range(0, specialChance);
+        if (randomRoll < colourClearChance)
+        {
+            CubeMode = CubeMode.ColourClear;
+        }
+        else if (randomRoll < lineClearChance)
+        {
+            CubeMode = CubeMode.LineClear;
+        }
+        else
+        {
+            CubeMode = CubeMode.Bomb;
+        }
+        Debug.Log("Random Block Added.");
     }
 
     //private void OnMouseDown()

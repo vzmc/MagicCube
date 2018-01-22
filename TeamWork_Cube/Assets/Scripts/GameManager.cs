@@ -432,7 +432,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ComboIncrement()
     {
+        //Debug.Log("Combo!");
         combo++;
+        //以下はホームズによる追加です。（1月22日）
+        int numCombosRequiredForSpecialBlock = 3;
+        if(combo > 0 && combo % numCombosRequiredForSpecialBlock == 0)
+        {
+            Debug.Log("Combo of " + combo + " achieved. Adding one special block.");
+            CubeCell.SetRandomPowerup();
+        }
     }
 
     /// <summary>
@@ -545,6 +553,12 @@ public class GameManager : MonoBehaviour
         {
             OnLevelUp(levelUpAmount);
             //1110(何)レベルアップ時残りターンが設定した分増える
+
+            //以下はホームズによる追加（1月22日）
+            Debug.Log("Levelled up! Adding one special cube.");
+            CubeCell.SetRandomPowerup();
+            //以上
+
             nowMaxRound += increaseRound;
         }
         //以上
