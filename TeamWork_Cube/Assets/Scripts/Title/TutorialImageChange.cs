@@ -23,18 +23,11 @@ public class TutorialImageChange : MonoBehaviour
     public Text LoadText;
     GameObject CannotClickPanel;
 
-    GameObject canNotVideoButton; //動画を再生できない時に出すボタン
-    private bool canNotVideo;
-    private bool firstButtonClick;
-
     // Use this for initialization
     void Start ()
     {
         CannotClickPanel = GameObject.Find("CannotClickPanel");
         CannotClickPanel.SetActive(false);
-
-        canNotVideoButton = GameObject.Find("CanNotVideoButton");
-        canNotVideoButton.SetActive(false);
 
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -53,9 +46,6 @@ public class TutorialImageChange : MonoBehaviour
         beforVideoNum = videoNum;
 
         StartCoroutine(MovieOn());
-
-        canNotVideo = false;
-        firstButtonClick = false;
     }
 
     // Update is called once per frame
@@ -68,8 +58,6 @@ public class TutorialImageChange : MonoBehaviour
             if (loadTime > 4f)
             {
                 LoadText.text = "この端末では\n再生できません";
-                canNotVideoButton.SetActive(true);
-                if(firstButtonClick == false) showText.text = "右下のボタンを押してから\nもう一度アイコンを\n押してください";
             }
         }
         else
@@ -97,7 +85,6 @@ public class TutorialImageChange : MonoBehaviour
         {
             VideoPanel.SetActive(false);
             LoadText.enabled = false;
-            canNotVideoButton.SetActive(false);
         }
     }
 
@@ -142,112 +129,69 @@ public class TutorialImageChange : MonoBehaviour
     public void Bomb()
     {
         showText.text = "ボム";
-        if (canNotVideo == false)
+        videoNum = 4;
+        if (videoNum != beforVideoNum)
         {
-            videoNum = 4;
-            if (videoNum != beforVideoNum)
-            {
-                loadFlag = true;
-            }
-            beforVideoNum = videoNum;
-            buttonTouch = true;
+            loadFlag = true;
         }
-        else if (canNotVideo == true)
-        {
-            Handheld.PlayFullScreenMovie("BombVideo.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
-        }
+        beforVideoNum = videoNum;
+        buttonTouch = true;
     }
 
     public void AllColorBomb()
     {
         showText.text = "同色全消しボム";
-        if (canNotVideo == false)
+        videoNum = 5;
+        if (videoNum != beforVideoNum)
         {
-            videoNum = 5;
-            if (videoNum != beforVideoNum)
-            {
-                loadFlag = true;
-            }
-            buttonTouch = true;
-            beforVideoNum = videoNum;
+            loadFlag = true;
         }
-        else if (canNotVideo == true)
-        {
-            Handheld.PlayFullScreenMovie("DeleteVideo.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
-        }
+        buttonTouch = true;
+        beforVideoNum = videoNum;
     }
     public void Cross()
     {
         showText.text = "十字消し";
-        if (canNotVideo == false)
+        videoNum = 6;
+
+        //メモリ不足対策
+        Resources.UnloadUnusedAssets();
+
+        if (videoNum != beforVideoNum)
         {
-            videoNum = 6;
-
-            //メモリ不足対策
-            Resources.UnloadUnusedAssets();
-
-            if (videoNum != beforVideoNum)
-            {
-                loadFlag = true;
-            }
-            buttonTouch = true;
-            beforVideoNum = videoNum;
-
+            loadFlag = true;
         }
-        else if (canNotVideo == true)
-        {
-            Handheld.PlayFullScreenMovie("CrossVideo.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
-        }
+        buttonTouch = true;
+        beforVideoNum = videoNum;
     }
 
     /****Androidバージョン操作**************************/
     public void Touch()
     {
         showText.text = "任意のブロックを\nドラッグすれば\n同じ面の中で動かせます";
-        if (canNotVideo == false)
+        videoNum = 1;
+        if (videoNum != beforVideoNum)
         {
-            videoNum = 1;
-            if (videoNum != beforVideoNum)
-            {
-                loadFlag = true;
-            }
-            buttonTouch = true;
-            beforVideoNum = videoNum;
+            loadFlag = true;
         }
-        else if (canNotVideo == true)
-        {
-            Handheld.PlayFullScreenMovie("SlideVideo.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
-        }
+        buttonTouch = true;
+        beforVideoNum = videoNum;
     }
 
     public void Touch_Rotate()
     {
         showText.text = "ブロック以外のところを\nスワイプすれば\n回転できます";
-        if (canNotVideo == false)
+        videoNum = 2;
+
+        //メモリ不足対策
+        Resources.UnloadUnusedAssets();
+
+        if (videoNum != beforVideoNum)
         {
-            videoNum = 2;
-
-            //メモリ不足対策
-            Resources.UnloadUnusedAssets();
-
-            if (videoNum != beforVideoNum)
-            {
-                loadFlag = true;
-            }
-            buttonTouch = true;
-            beforVideoNum = videoNum;
-
+            loadFlag = true;
         }
-        else if (canNotVideo == true)
-        {
-            Handheld.PlayFullScreenMovie("Rotation_android.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
-        }
-    }
-
-    public void CanNotVideoButton()
-    {
-        canNotVideo = true;
-        firstButtonClick = true;
+        buttonTouch = true;
+        beforVideoNum = videoNum;
     }
 
     IEnumerator MovieOn()
