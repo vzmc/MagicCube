@@ -26,17 +26,26 @@ public class RankingManager : MonoBehaviour
 
     public Button resetButton, backButton;
 
+    private string noPersonalRecord = "No Personal Record Found.";
+
     private bool isPlayerTop5 = false;
 
-    //Debug
-    public Text debugtext;
+    private bool isInternetActive = false;
 
     // Use this for initialization
     void Start()
     {
-        Debug_NowLocalScore();
-
-        StartCoroutine(LoadRanking());
+        //180122　ネットワーク状態
+        if (Application.internetReachability == NetworkReachability.NotReachable) 
+        {
+            isInternetActive = false;
+            LoadRanking_Local();
+        }
+        else
+        {
+            isInternetActive = true;
+            StartCoroutine(LoadRanking_Global());
+        }
     }
 
     // Update is called once per frame
@@ -47,21 +56,56 @@ public class RankingManager : MonoBehaviour
     /// <summary>
     /// ネット上のランク資料を読み取って表示
     /// </summary>
-    /// <returns></returns>
-    private IEnumerator LoadRanking()
+    private IEnumerator LoadRanking_Global()
     {
         //スコア表示処理が終わる前、リセットボタンを無効化
         resetButton.interactable = false;
+        backButton.interactable = false;
 
         logText.text = "now loading";
 
+
+        //*****ローカルとグローバルのスコアを照合、アップデート*****
+        //以前アップしたスコア記録があるかをチェック
+        var hiScoreCheck = new SpreadSheetQuery();
+        yield return hiScoreCheck.Where("id", "=", SpreadSheetSetting.Instance.UniqueID).FindAsync();   //"id"を検索条件に入れることで、すでにスコアが登録されているかチェック
+
+        //既にハイスコアは登録されている
+        if (hiScoreCheck.Count > 0)
+        {
+            var so = hiScoreCheck.Result.First();
+
+            //今持つローカルスコアが大きいだったら
+            if (int.Parse(so["hiscore"].ToString()) <= PlayerPrefs.GetInt("score", 0))
+            {
+                //globalに上書き保存
+                so["hiscore"] = PlayerPrefs.GetInt("score", 0);
+                so["date"] = PlayerPrefs.GetString("date"); //24時間制
+                yield return so.SaveAsync();
+            }
+            else //ローカルが小さいだったら
+            {
+                //localに上書き
+                PlayerPrefs.SetInt("score", int.Parse(so["hiscore"].ToString()));
+                PlayerPrefs.SetString("date", so["date"].ToString());
+            }
+        }
+        else
+        {
+            //登録されていなかったので、新規としてidにUniqueIDを入れて次の更新処理に備えたデータで保存する
+            var so = new SpreadSheetObject();
+            so["id"] = SpreadSheetSetting.Instance.UniqueID;
+            so["hiscore"] = PlayerPrefs.GetInt("score", 0);
+            so["date"] = PlayerPrefs.GetString("date"); //24時間制
+            yield return so.SaveAsync();
+        }
+
+
+        //*****TOP5を取得*****
         //まずTop5の取得
         var topRankQuery = new SpreadSheetQuery();
-
         //ハイスコアを降順（大きい順）にして、Limit5にすることで、TOP5を取得
         yield return topRankQuery.OrderByDescending("hiscore").Limit(5).FindAsync();
-
-        //if (topRankQuery.Count == 0) Debug.Log("Oh no! There's nothing there!!!");
 
         //取得できたデータ表示
         var dispRank = 0;
@@ -72,14 +116,9 @@ public class RankingManager : MonoBehaviour
             if (dtString == "") continue;
             rankList[dispRank].text = (dispRank + 1).ToString();
             childScore[dispRank].text = so["hiscore"].ToString();
-            //Debug.Log(so["date"]);
+
             DateTime dt = DateTime.Parse(dtString); // 2017/12/22 Holmes
             childDate[dispRank].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
-            //Debug.Log(childDate.Count);
-            //for (int i = 0; i < childDate.Count; i++)
-            //{
-            //    Debug.Log(i + ": " + childDate[i].text);
-            //}
 
             //自分のスコアを赤くするために、idでチェック
             if (so["id"] as string == SpreadSheetSetting.Instance.UniqueID)
@@ -94,6 +133,8 @@ public class RankingManager : MonoBehaviour
             dispRank++;
         }
 
+
+        //*****個人のスコアの順位をチェック*****
         //自分がTOP5じゃない時、別でスコア表示
         if (!isPlayerTop5)
         {
@@ -101,34 +142,52 @@ public class RankingManager : MonoBehaviour
             var playerRecord = new SpreadSheetQuery();
             yield return playerRecord.Where("id", "=", SpreadSheetSetting.Instance.UniqueID).FindAsync();   //"id"を検索条件に入れることで、すでにスコアが登録されているかチェック
 
-            //既にハイスコアは登録されている
+            //既に個別IDは登録されている
             if (playerRecord.Count > 0)
             {
+                //IDがあっても記録日時がない場合は無視
+                foreach (var player in playerRecord.Result)
+                {
+                    string dtString = player["date"] as string;
+                    if (dtString == "")
+                    {
+                        playerLogText.text = noPersonalRecord;
+                        resetButton.interactable = true;
+                        yield break;
+                    }
+                }
+
                 //個人スコアの表示処理（TOP5以外の場合）
                 //まずプレイヤーの順位を取得
                 var playerRankingQuery = new SpreadSheetQuery();
                 yield return playerRankingQuery.Where("hiscore", ">", PlayerPrefs.GetInt("score", 0)).CountAsync();  //自分よりスコアが高いプレイヤーが何人いるか
 
                 var rank = playerRankingQuery.Count + 1;    //自分のスコアのランク取得
-                
+
                 //取得できたデータをうまく整形しつつ表示
-                foreach (var so in playerRecord.Result)
+                foreach (var player in playerRecord.Result)
                 {
+                    string dtString = player["date"] as string;
+                    if (dtString == "") continue;
+
                     playerLogText.text = "";
                     personalRecord[0].text = rank.ToString();
-                    personalRecord[1].text = so["hiscore"].ToString();
-                    personalRecord[2].text = so["date"] as string; ;
-
+                    personalRecord[1].text = player["hiscore"].ToString();
+                    DateTime dt = DateTime.Parse(dtString);
+                    personalRecord[2].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
                 }
             }
-            else
+            else //IDすらない
             {
-                //個人スコアがない
-                playerLogText.text = "No Personal Record Yet...";
+                //個人スコアがないと見なす
+                playerLogText.text = noPersonalRecord;
+
             }
         }
 
+        backButton.interactable = true;
         resetButton.interactable = true;
+
     }
 
     /// <summary>
@@ -136,34 +195,70 @@ public class RankingManager : MonoBehaviour
     /// </summary>
     public void ResetPushed()
     {
-        //個人スコアがない場合説明文を出す
-        if(playerLogText.text == "No Personal Record Yet..." ||
-           playerLogText.text == "Record Reset." ||
-           playerLogText.text == "Nothing to Delete.")
+        //ネットあり
+        if (isInternetActive)
         {
-            playerLogText.text = "Nothing to Delete.";
-        }
-        else　//個人スコアがある場合
-        {
-            //遷移ボタンを無効化
-            resetButton.interactable = false;
-            backButton.interactable = false;
-
-            //個人スコア表示消し、削除確認
-            foreach (var p in personalRecord)
+            //個人スコアがない場合説明文を出す
+            if (playerLogText.text == noPersonalRecord ||
+               playerLogText.text == "Record Reset." ||
+               playerLogText.text == "No Record to Delete.")
             {
-                p.gameObject.SetActive(false);
+                playerLogText.text = "No Record to Delete.";
             }
-            playerLogText.text = "Delete Your Record?";
-            yesButton.gameObject.SetActive(true);
-            noButton.gameObject.SetActive(true);
+            else //個人スコアがある場合
+            {
+                //遷移ボタンを無効化
+                resetButton.interactable = false;
+                backButton.interactable = false;
+
+                //個人スコア表示消し、削除確認
+                foreach (var p in personalRecord)
+                {
+                    p.gameObject.SetActive(false);
+                }
+                playerLogText.text = "Delete Your Record?";
+                yesButton.gameObject.SetActive(true);
+                noButton.gameObject.SetActive(true);
+            }
+        }
+        else //ネットなし
+        {
+            //個人スコアがない場合説明文を出す
+            if (playerLogText.text == noPersonalRecord ||
+               playerLogText.text == "Record Reset." ||
+               playerLogText.text == "No Record to Delete.")
+            {
+                playerLogText.text = "No Record to Delete.";
+            }
+            else //個人スコアがある場合
+            {
+                //遷移ボタンを無効化
+                resetButton.interactable = false;
+                backButton.interactable = false;
+
+                //個人スコア表示消し、削除確認
+                foreach (var p in personalRecord)
+                {
+                    p.gameObject.SetActive(false);
+                }
+                playerLogText.text = "Delete Your Record?";
+                yesButton.gameObject.SetActive(true);
+                noButton.gameObject.SetActive(true);
+            }
         }
 
     }
 
     public void YesButtonPushed()
     {
-        StartCoroutine(DeletePersonalRecord());
+        if (isInternetActive)
+        {
+            StartCoroutine(DeletePersonalRecord_Global());
+        }
+        else
+        {
+            DeletePersonalRecord_Local();
+        }
     }
 
     public void NoButtonPushed()
@@ -184,7 +279,7 @@ public class RankingManager : MonoBehaviour
     /// <summary>
     /// 個人記録をリセット
     /// </summary>
-    private IEnumerator DeletePersonalRecord()
+    private IEnumerator DeletePersonalRecord_Global()
     {
         playerLogText.text = "Deleting...";
         yesButton.gameObject.SetActive(false);
@@ -209,7 +304,7 @@ public class RankingManager : MonoBehaviour
         if (isPlayerTop5)
         {
             ResetRankingText();
-            yield return StartCoroutine(LoadRanking());
+            StartCoroutine(LoadRanking_Global());
         }
 
         //ボタン復帰
@@ -239,15 +334,51 @@ public class RankingManager : MonoBehaviour
         }
     }
 
-    public void Debug_ResetJustLocalScore()
+    /// <summary>
+    /// ネット接続なし
+    /// ローカルスコア
+    /// </summary>
+    private void LoadRanking_Local()
+    {
+        //スコア表示処理が終わる前、リセットボタンを無効化
+        resetButton.interactable = false;
+        backButton.interactable = false;
+
+        logText.text = "No Internet Service.\n" + "No OnlineRanking Information.";
+
+        //スコア記録あるか
+        if (PlayerPrefs.GetInt("score") == 0)
+        {
+            playerLogText.text = noPersonalRecord;
+        }
+        else
+        {
+            playerLogText.text = "";
+
+            personalRecord[0].text = "LocalScore";
+            personalRecord[1].text = PlayerPrefs.GetInt("score").ToString();
+
+            if (PlayerPrefs.GetString("date") == null)
+            {
+                personalRecord[2].text = "No date record found.";
+            }
+            else
+            {
+                DateTime dt = DateTime.Parse(PlayerPrefs.GetString("date"));
+                personalRecord[2].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
+            }
+        }
+
+        backButton.interactable = true;
+        resetButton.interactable = true;
+    }
+    public void DeletePersonalRecord_Local()
     {
         //ローカルリセット
         PlayerPrefs.SetInt("score", 0);
-    }
+        PlayerPrefs.SetString("date", "");
 
-    public void Debug_NowLocalScore()
-    {
-        debugtext.text = PlayerPrefs.GetInt("score").ToString();
+        LoadRanking_Local();
     }
 
 }
