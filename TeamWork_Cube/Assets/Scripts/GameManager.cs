@@ -308,29 +308,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void TurnIncrement()
     {
-        /*
-        nowTurn++;
-
-        int remainder = nowTurn % magicCube.RotateInterval;
-
-        if(remainder == 0)
-        {
-            rotateCountDown = 0;
-        }
-        else
-        {
-            rotateCountDown = magicCube.RotateInterval - remainder;
-        }
-
-        SetNowTurnText(nowTurn.ToString());
-        SetCountDownText(rotateCountDown.ToString());
-
-        //Debug.Log("NowTurn: " + nowTurn + " | nowTurn % magicCube.RotateInterval: " + nowTurn % magicCube.RotateInterval);
-        if (nowTurn > maxTurn)
-        {
-            ArriveMaxTurnAction();
-        }
-        */
         rotateCountDown--;
         //SetCountDownText(rotateCountDown.ToString());
     }
@@ -373,6 +350,10 @@ public class GameManager : MonoBehaviour
         else if (totalScore >= maxScore) //スコア爆発したら。。。
         {
             totalScore = maxScore; //最大値に固定(億には行かせない(￣▽￣)
+            ArriveMaxTurnAction();
+        }
+        else if(levelCount == MaxLevel)//最大レベル
+        {
             ArriveMaxTurnAction();
         }
     }
@@ -522,7 +503,7 @@ public class GameManager : MonoBehaviour
         expForNextLevel = nextLevel - matchedCount;
 
 
-        levelText.SetText(levelCount.ToString(), expForNextLevel.ToString());
+        levelText.SetText(MaxLevel, levelCount, expForNextLevel);
     }
 
     /// <summary>
@@ -564,6 +545,8 @@ public class GameManager : MonoBehaviour
             nowMaxRound += increaseRound;
         }
         //以上
+
+
     }
     //↑↑↑↑1006追加分↑↑↑↑↑
     //1117林追加

@@ -10,9 +10,16 @@ public class LevelText : TextController
 
 
 
-    public void SetText(string nowLevel, string expToNextLevel)
+    public void SetText(int maxLevel, int nowLevel, int expToNextLevel)
     {
-        base.SetText("Level: " + nowLevel + "\nExp.to Next Level: " + expToNextLevel);
+        if (nowLevel == maxLevel)
+        {
+            base.SetText("Level: MAX!!" + "\nExp.to Next Level: 0");
+        }
+        else
+        {
+            base.SetText("Level: " + nowLevel + "\nExp.to Next Level: " + expToNextLevel);
+        }
     }
 
 }
