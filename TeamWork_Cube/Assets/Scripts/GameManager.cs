@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Material> cube_Materials_List; //今使っている色を格納するリスト
     public int ColorChangePerLevel = 3;          //色を増やすレベル
-    private CubeColorChange cubeColorChange;    //キューブの色を増減するクラス
     public int MaxLevel;        //最大レベル
     public int ExpInterval;     //レベル毎上がる経験値差分
     //↑↑↑↑1016追加分↑↑↑↑↑
@@ -284,9 +283,6 @@ public class GameManager : MonoBehaviour
         //1110何
         //デフォルトの最大ターン数を渡す
         nowMaxRound = defaltMaxRound;
-        //1113何
-        cubeColorChange = GetComponent<CubeColorChange>();
-
     }
 
     private void Start()
@@ -438,7 +434,10 @@ public class GameManager : MonoBehaviour
         int numCombosRequiredForSpecialBlock = 3;
         if(combo > 0 && combo % numCombosRequiredForSpecialBlock == 0)
         {
-            Debug.Log("Combo of " + combo + " achieved. Adding one special block.");
+            if (Debug.isDebugBuild)
+            {
+                Debug.Log("Combo of " + combo + " achieved. Adding one special block.");
+            }
             CubeCell.SetRandomPowerup();
         }
     }
@@ -555,7 +554,10 @@ public class GameManager : MonoBehaviour
             //1110(何)レベルアップ時残りターンが設定した分増える
 
             //以下はホームズによる追加（1月22日）
-            Debug.Log("Levelled up! Adding one special cube.");
+            if (Debug.isDebugBuild)
+            {
+                Debug.Log("Levelled up! Adding one special cube.");
+            }
             CubeCell.SetRandomPowerup();
             //以上
 

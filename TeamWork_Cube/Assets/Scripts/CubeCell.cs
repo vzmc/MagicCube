@@ -85,7 +85,7 @@ public class CubeCell : MonoBehaviour
 
     public void StartMove(Vector3 dir, float moveTime)
     {
-        
+
         StartCoroutine(Move(dir, moveTime));
     }
 
@@ -99,7 +99,7 @@ public class CubeCell : MonoBehaviour
         Vector3 start = transform.localPosition;
         Vector3 end = start + dir;
 
-        while(rate < 1)
+        while (rate < 1)
         {
             transform.localPosition = Vector3.Lerp(start, end, rate);
             time += Time.deltaTime;
@@ -136,7 +136,7 @@ public class CubeCell : MonoBehaviour
         //    new Texture2D(myRenderer.material.mainTexture.width,
         //    myRenderer.material.mainTexture.height);
 
-        
+
         myRenderer.material.mainTexture = output;
     }
 
@@ -181,7 +181,7 @@ public class CubeCell : MonoBehaviour
     public void RandomSetMaterial()
     {
         //1016何　　Cube_Materials＞＞Cube_Materials_List
-        color = gameManager.ColourFromLocalIndex( Random.Range(0, gameManager.Cube_Materials_List.Count));
+        color = gameManager.ColourFromLocalIndex(Random.Range(0, gameManager.Cube_Materials_List.Count));
         SetMaterial(gameManager.Cube_Materials[(int)color]);
         //以上
         //float randomRoll = Random.Range(0f, 1f);
@@ -197,7 +197,8 @@ public class CubeCell : MonoBehaviour
         //{
         //    CubeMode = CubeMode.Bomb;
         //}
-        /*else*/ CubeMode = CubeMode.Normal;
+        /*else*/
+        CubeMode = CubeMode.Normal;
     }
 
     /// <summary>
@@ -273,7 +274,7 @@ public class CubeCell : MonoBehaviour
             //{
             //    colorIndex = i;
             //}
-            if(i == (int)color)
+            if (i == (int)color)
             {
                 colorIndex = i;
             }
@@ -286,12 +287,12 @@ public class CubeCell : MonoBehaviour
             GameObject xpfx = Instantiate(ExplosionEffectPrefab, transform.position, transform.rotation);
             Destroy(xpfx, 2.0f);
         }
-        else if(CubeMode == CubeMode.LineClear)
+        else if (CubeMode == CubeMode.LineClear)
         {
             GameObject xpfx = Instantiate(LineClearEffectPrefab, transform.position, transform.rotation);
             Destroy(xpfx, 2.0f);
         }
-        else if(CubeMode == CubeMode.ColourClear)
+        else if (CubeMode == CubeMode.ColourClear)
         {
             GameObject xpfx = Instantiate(ColourClearEffectPrefab, transform.position, transform.rotation);
             Destroy(xpfx, 2.0f);
@@ -354,9 +355,9 @@ public class CubeCell : MonoBehaviour
     public static List<CubeCell> GetSameColourCubes(CubeCell test)
     {
         List<CubeCell> output = new List<CubeCell>();
-        foreach(CubeCell cc in allCubes)
+        foreach (CubeCell cc in allCubes)
         {
-            if(cc.color == test.color)
+            if (cc.color == test.color)
             {
                 output.Add(cc);
             }
@@ -372,7 +373,7 @@ public class CubeCell : MonoBehaviour
     public static int numSpecialItems()
     {
         int output = 0;
-        foreach(CubeCell cc in allCubes)
+        foreach (CubeCell cc in allCubes)
         {
             if (cc.cubeMode != CubeMode.Normal) output++;
         }
@@ -385,7 +386,10 @@ public class CubeCell : MonoBehaviour
     /// </summary>
     public static void SetRandomPowerup()
     {
-        Debug.Log("Setting Random Powerup.");
+        if (Debug.isDebugBuild)
+        {
+            Debug.Log("Setting Random Powerup.");
+        }
         if (numSpecialItems() >= 5 || //特殊ブロックを最大5つにする
             numSpecialItems() >= allCubes.Count) return; //無地キューブがないと以下の処理を行わない
         CubeCell selectedCube = allCubes[Random.Range(0, allCubes.Count - 1)];
@@ -396,7 +400,10 @@ public class CubeCell : MonoBehaviour
             triesLeft--;
             if (triesLeft <= 0)
             {
-                Debug.Log("特殊道具が入っていないキューブは見つかりませんでした。");
+                if (Debug.isDebugBuild)
+                {
+                    Debug.Log("特殊道具が入っていないキューブは見つかりませんでした。");
+                }
             }
         }
         selectedCube.SetAsSpecialBlock();
@@ -420,11 +427,9 @@ public class CubeCell : MonoBehaviour
         {
             CubeMode = CubeMode.Bomb;
         }
-        Debug.Log("Random Block Added.");
+        if (Debug.isDebugBuild)
+        {
+            Debug.Log("Random Block Added.");
+        }
     }
-
-    //private void OnMouseDown()
-    //{
-    //    Debug.Log(gameObject.name + ": I can smell your mouse, player!");
-    //}
 }

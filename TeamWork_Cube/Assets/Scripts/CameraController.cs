@@ -98,15 +98,6 @@ public class CameraController : MonoBehaviour
             pivotTransform.transform.rotation = Quaternion.Euler(30, 30, 0);
         }
     }
-    //public void GetInput()
-    //{
-    //    //if(joystick.GetHoldFlag())
-    //    //{
-    //    //    transform.Rotate(Vector3.up, joystick.GetVector().x * Time.deltaTime * rotateSpeed);
-    //    //    pivotTransform.Rotate(Vector3.right, -joystick.GetVector().y * Time.deltaTime * rotateSpeed);
-
-    //    //}
-    //}
 
     public void GetInput(float mouseX, float mouseY)
     {
@@ -115,7 +106,10 @@ public class CameraController : MonoBehaviour
         pivotTransform.Rotate(Vector3.right, -mouseY * rotateSpeed);
         
         Vector3 ea = pivotTransform.localEulerAngles;
-        Debug.Log(ea.x);
+        if (Debug.isDebugBuild)
+        {
+            Debug.Log(ea.x);
+        }
         if (ea.x > 180) ea.x -= 360;
         if (ea.x > 75) ea.x = 75;
         if (ea.x < -75) ea.x = -75;

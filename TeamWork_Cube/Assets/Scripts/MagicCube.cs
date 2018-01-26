@@ -800,7 +800,10 @@ public class MagicCube : MonoBehaviour
             yield return null;
         }
         isSliding = false;
-        Debug.Log("MoveOver");
+        if (Debug.isDebugBuild)
+        {
+            Debug.Log("MoveOver");
+        }
     }
 }
 
