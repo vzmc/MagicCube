@@ -86,7 +86,7 @@ public class ResultText : MonoBehaviour
     private string RandomHint()
     {
         string rndText = "～HINT～\n";
-        int rndHint = UnityEngine.Random.Range(0, 3);
+        int rndHint = UnityEngine.Random.Range(0, 5);
 
         switch (rndHint)
         {
@@ -99,6 +99,14 @@ public class ResultText : MonoBehaviour
             case 2:
                 rndText += "ブロックを移動する時方向をよく見るんだよ";
                 break;
+            case 3:
+                rndText += "アイテムは５つまでなのでどんどん使っちゃおうね";
+                break;
+            case 4:
+                rndText += "３コンボごとにアイテムがもらえるよ";
+
+                break;
+
         }
 
         return rndText;
