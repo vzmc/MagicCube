@@ -1,4 +1,4 @@
-Android
+WindowsStandalone
 SceneListBegin?
 Assets/Scenes/Title.unity
 Assets/Scenes/PlayScene.unity
