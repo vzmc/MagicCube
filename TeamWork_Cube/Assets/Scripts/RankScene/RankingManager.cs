@@ -76,7 +76,7 @@ public class RankingManager : MonoBehaviour
             var so = hiScoreCheck.Result.First();
 
             //今持つローカルスコアが大きいだったら
-            if (int.Parse(so["hiscore"].ToString()) <= PlayerPrefs.GetInt("score", 0))
+            if (int.Parse(so["hiscore"].ToString()) < PlayerPrefs.GetInt("score", 0))
             {
                 //globalに上書き保存
                 so["hiscore"] = PlayerPrefs.GetInt("score", 0);
@@ -92,12 +92,16 @@ public class RankingManager : MonoBehaviour
         }
         else
         {
-            //登録されていなかったので、新規としてidにUniqueIDを入れて次の更新処理に備えたデータで保存する
-            var so = new SpreadSheetObject();
-            so["id"] = SpreadSheetSetting.Instance.UniqueID;
-            so["hiscore"] = PlayerPrefs.GetInt("score", 0);
-            so["date"] = PlayerPrefs.GetString("date"); //24時間制
-            yield return so.SaveAsync();
+            //0以外の場合
+            if (PlayerPrefs.GetInt("score", 0) != 0)
+            {
+                //登録されていなかったので、新規としてidにUniqueIDを入れて次の更新処理に備えたデータで保存する
+                var so = new SpreadSheetObject();
+                so["id"] = SpreadSheetSetting.Instance.UniqueID;
+                so["hiscore"] = PlayerPrefs.GetInt("score", 0);
+                so["date"] = PlayerPrefs.GetString("date"); //24時間制
+                yield return so.SaveAsync();
+            }
         }
 
 
