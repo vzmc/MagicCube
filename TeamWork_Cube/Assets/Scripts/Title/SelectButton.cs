@@ -9,9 +9,13 @@ public class SelectButton : MonoBehaviour
 
     public Animator fade;
 
+    private GameLoad load;
+
     // Use this for initialization
     void Start()
     {
+        load = GetComponent<GameLoad>();
+
         SceneSelectEnd = false;
         TitleManager.OnPanel = true;
     }
@@ -61,7 +65,7 @@ public class SelectButton : MonoBehaviour
         SceneSelectEnd = true;
         fade.SetTrigger("FadeOut");
         TitleSound.SelectSE_Play = true;
-        if (SelectCube.multiPlay == false) Invoke("GoToPlay", 1.5f);
+        if (SelectCube.multiPlay == false) Invoke("GoToPlay", 1f);
         else
         {
             //マルチプレイゲームシーン用
@@ -102,7 +106,8 @@ public class SelectButton : MonoBehaviour
     //Invorkで使う
     private void GoToPlay()
     {
-        SceneManager.LoadScene("PlayScene");
+        //SceneManager.LoadScene("PlayScene");
+        load.LoadingStart();
     }
     private void GoToTutorial()
     {

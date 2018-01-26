@@ -55,7 +55,6 @@ public class TitleManager : MonoBehaviour
         IsEnd = false;
         panel = GameObject.Find("Panel");
         OnPanel = true;
-        
     }
 	
 	// Update is called once per frame

@@ -7,9 +7,12 @@ public class MoveScene : MonoBehaviour {
 
     public Animator fade;
 
+    private GameLoad load;
+
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        load = GetComponent<GameLoad>();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +43,14 @@ public class MoveScene : MonoBehaviour {
         StartCoroutine(Fade(sceneName));
     }
 
+    public void ToLoad()
+    {
+        //チュートリアルのビデオパネルがフェードした後残ってしまうから
+        TutorialImageChange.OnVideo = false;
+
+        StartCoroutine(Fade_ToLoad());
+    }
+
     IEnumerator Fade(string sceneName)
     {
         if (fade != null)
@@ -48,5 +59,15 @@ public class MoveScene : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
         }
         SceneManager.LoadScene(sceneName);
+    }
+
+    IEnumerator Fade_ToLoad()
+    {
+        if (fade != null)
+        {
+            fade.SetTrigger("FadeOut");
+            yield return new WaitForSeconds(1.0f);
+        }
+        load.LoadingStart();
     }
 }
