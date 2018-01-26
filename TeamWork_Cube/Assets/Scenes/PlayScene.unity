@@ -1648,10 +1648,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1294671731424358, guid: ca24909d8ddb6c34fa8825c0a0a9a800, type: 2}
-      propertyPath: m_Name
-      value: GameManager (1)
-      objectReference: {fileID: 0}
+    - target: {fileID: 114521909445457878, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+        type: 2}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 16952467}
+    - target: {fileID: 114444530418822630, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+        type: 2}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1759208877}
+    - target: {fileID: 114444530418822630, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+        type: 2}
+      propertyPath: magicCube
+      value: 
+      objectReference: {fileID: 1537335960}
+    - target: {fileID: 114444530418822630, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+        type: 2}
+      propertyPath: faceSelectIndicator
+      value: 
+      objectReference: {fileID: 2053624845}
+    - target: {fileID: 114444530418822630, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+        type: 2}
+      propertyPath: cellCursor
+      value: 
+      objectReference: {fileID: 2098015592}
+    - target: {fileID: 114170403225851984, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+        type: 2}
+      propertyPath: magicCube
+      value: 
+      objectReference: {fileID: 1537335960}
     - target: {fileID: 114170403225851984, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
         type: 2}
       propertyPath: nowTurnText
@@ -1697,41 +1723,20 @@ Prefab:
       propertyPath: levelUpEffect
       value: 
       objectReference: {fileID: 554919443}
-    - target: {fileID: 114170403225851984, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
-        type: 2}
-      propertyPath: magicCube
-      value: 
-      objectReference: {fileID: 1537335960}
-    - target: {fileID: 114170403225851984, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
-        type: 2}
-      propertyPath: MaxLevel
-      value: 100
+    - target: {fileID: 1294671731424358, guid: ca24909d8ddb6c34fa8825c0a0a9a800, type: 2}
+      propertyPath: m_Name
+      value: GameManager (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114444530418822630, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+    - target: {fileID: 114123205436740828, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
         type: 2}
-      propertyPath: cameraController
+      propertyPath: ui
       value: 
-      objectReference: {fileID: 1759208877}
-    - target: {fileID: 114444530418822630, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+      objectReference: {fileID: 294712940}
+    - target: {fileID: 114123205436740828, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
         type: 2}
-      propertyPath: magicCube
+      propertyPath: mainCube
       value: 
-      objectReference: {fileID: 1537335960}
-    - target: {fileID: 114444530418822630, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
-        type: 2}
-      propertyPath: faceSelectIndicator
-      value: 
-      objectReference: {fileID: 2053624845}
-    - target: {fileID: 114444530418822630, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
-        type: 2}
-      propertyPath: cellCursor
-      value: 
-      objectReference: {fileID: 2098015592}
-    - target: {fileID: 114521909445457878, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
-        type: 2}
-      propertyPath: fade
-      value: 
-      objectReference: {fileID: 16952467}
+      objectReference: {fileID: 161068090}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca24909d8ddb6c34fa8825c0a0a9a800, type: 2}
   m_IsPrefabParent: 0
@@ -2186,25 +2191,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224153442472476492, guid: f223a0dc73ef9b44d84a9b5389da43be,
     type: 2}
   m_PrefabInternal: {fileID: 1298509434}
---- !u!1 &1222704184 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1294671731424358, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
+--- !u!114 &1222704190 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114123205436740828, guid: ca24909d8ddb6c34fa8825c0a0a9a800,
     type: 2}
   m_PrefabInternal: {fileID: 1092698477}
---- !u!114 &1222704190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1222704184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eeb5aa77c53cac4d89914621b9a70ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopTime: 0
-  ui: {fileID: 294712940}
-  mainCube: {fileID: 161068090}
 --- !u!1 &1231146917
 GameObject:
   m_ObjectHideFlags: 0

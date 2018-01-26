@@ -1,0 +1,253 @@
+-debug
+-target:library
+-nowarn:0169
+-langversion:6
+-out:Temp/Assembly-CSharp.dll
+-unsafe
+-optimize
+-r:Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.CoreModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.AccessibilityModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.ParticleSystemModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.PhysicsModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.VehiclesModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.ClothModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.AIModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.AnimationModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.TextRenderingModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UIModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.TerrainPhysicsModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.IMGUIModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UNETModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.DirectorModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UnityAnalyticsModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.PerformanceReportingModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UnityConnectModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.WebModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.ARModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.VRModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UIElementsModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.StyleSheetsModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.AssetBundleModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.AudioModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.CrashReportingModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.GameCenterModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.GridModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.ImageConversionModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.InputModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.JSONSerializeModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.ParticlesLegacyModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.Physics2DModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.ScreenCaptureModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.SharedInternalsModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.SpriteMaskModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.SpriteShapeModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.TerrainModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.TilemapModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UnityWebRequestModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UnityWebRequestAudioModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UnityWebRequestTextureModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.UnityWebRequestWWWModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.VideoModule.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Variations/mono/Managed/UnityEngine.WindModule.dll"
+-r:"F:/More Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Standalone/UnityEngine.UI.dll"
+-r:"F:/More Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Standalone/UnityEngine.Networking.dll"
+-r:"F:/More Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/Runtime/UnityEngine.Timeline.dll"
+-r:"F:/More Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/Runtime/UnityEngine.SpatialTracking.dll"
+-r:C:/Users/Michael/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_2017_1_OR_NEWER
+-define:UNITY_2017_2_OR_NEWER
+-define:UNITY_2017_3_OR_NEWER
+-define:UNITY_2017_3_0
+-define:UNITY_2017_3
+-define:UNITY_2017
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_GENERICS
+-define:ENABLE_PVR_GI
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_SPRITERENDERER_FLIPPING
+-define:ENABLE_SPRITES
+-define:ENABLE_GRID
+-define:ENABLE_TILEMAP
+-define:ENABLE_TERRAIN
+-define:ENABLE_RAKNET
+-define:ENABLE_DIRECTOR
+-define:ENABLE_UNET
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES_COLLAB
+-define:ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_HUB
+-define:ENABLE_CLOUD_PROJECT_ID
+-define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_HUB
+-define:ENABLE_EDITOR_HUB_LICENSE
+-define:ENABLE_WEBSOCKET_CLIENT
+-define:ENABLE_DIRECTOR_AUDIO
+-define:ENABLE_DIRECTOR_TEXTURE
+-define:ENABLE_TIMELINE
+-define:ENABLE_EDITOR_METRICS
+-define:ENABLE_EDITOR_METRICS_CACHING
+-define:ENABLE_NATIVE_ARRAY
+-define:ENABLE_SPRITE_MASKING
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:ENABLE_MONO_BDWGC
+-define:PLATFORM_SUPPORTS_MONO
+-define:INCLUDE_PUBNUB
+-define:ENABLE_PLAYMODE_TESTS_RUNNER
+-define:ENABLE_VIDEO
+-define:ENABLE_RMGUI
+-define:ENABLE_PACKMAN
+-define:ENABLE_CUSTOM_RENDER_TEXTURE
+-define:ENABLE_STYLE_SHEETS
+-define:ENABLE_LOCALIZATION
+-define:PLATFORM_ANDROID
+-define:UNITY_ANDROID
+-define:UNITY_ANDROID_API
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_EGL
+-define:ENABLE_NETWORK
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_EVENT_QUEUE
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING
+-define:PLATFORM_SUPPORTS_ADS_ID
+-define:UNITY_CAN_SHOW_SPLASH_SCREEN
+-define:ENABLE_VR
+-define:ENABLE_AR
+-define:ENABLE_SPATIALTRACKING
+-define:ENABLE_UNITYADS_RUNTIME
+-define:UNITY_UNITYADS_API
+-define:ENABLE_MONO
+-define:NET_4_6
+-define:CROSS_PLATFORM_INPUT
+-define:MOBILE_INPUT
+-define:UNITY_HAS_GOOGLEVR
+-define:UNITY_HAS_TANGO
+Assets/GSSA/Scripts/MiniJSON.cs
+Assets/GSSA/Scripts/SpreadSheetConst.cs
+Assets/GSSA/Scripts/SpreadSheetObject.cs
+Assets/GSSA/Scripts/SpreadSheetQuery.cs
+Assets/GSSA/Scripts/SpreadSheetSetting.cs
+Assets/PostProcessing/Runtime/Attributes/GetSetAttribute.cs
+Assets/PostProcessing/Runtime/Attributes/MinAttribute.cs
+Assets/PostProcessing/Runtime/Attributes/TrackballAttribute.cs
+Assets/PostProcessing/Runtime/Attributes/TrackballGroupAttribute.cs
+Assets/PostProcessing/Runtime/Components/AmbientOcclusionComponent.cs
+Assets/PostProcessing/Runtime/Components/BloomComponent.cs
+Assets/PostProcessing/Runtime/Components/BuiltinDebugViewsComponent.cs
+Assets/PostProcessing/Runtime/Components/ChromaticAberrationComponent.cs
+Assets/PostProcessing/Runtime/Components/ColorGradingComponent.cs
+Assets/PostProcessing/Runtime/Components/DepthOfFieldComponent.cs
+Assets/PostProcessing/Runtime/Components/DitheringComponent.cs
+Assets/PostProcessing/Runtime/Components/EyeAdaptationComponent.cs
+Assets/PostProcessing/Runtime/Components/FogComponent.cs
+Assets/PostProcessing/Runtime/Components/FxaaComponent.cs
+Assets/PostProcessing/Runtime/Components/GrainComponent.cs
+Assets/PostProcessing/Runtime/Components/MotionBlurComponent.cs
+Assets/PostProcessing/Runtime/Components/ScreenSpaceReflectionComponent.cs
+Assets/PostProcessing/Runtime/Components/TaaComponent.cs
+Assets/PostProcessing/Runtime/Components/UserLutComponent.cs
+Assets/PostProcessing/Runtime/Components/VignetteComponent.cs
+Assets/PostProcessing/Runtime/Models/AmbientOcclusionModel.cs
+Assets/PostProcessing/Runtime/Models/AntialiasingModel.cs
+Assets/PostProcessing/Runtime/Models/BloomModel.cs
+Assets/PostProcessing/Runtime/Models/BuiltinDebugViewsModel.cs
+Assets/PostProcessing/Runtime/Models/ChromaticAberrationModel.cs
+Assets/PostProcessing/Runtime/Models/ColorGradingModel.cs
+Assets/PostProcessing/Runtime/Models/DepthOfFieldModel.cs
+Assets/PostProcessing/Runtime/Models/DitheringModel.cs
+Assets/PostProcessing/Runtime/Models/EyeAdaptationModel.cs
+Assets/PostProcessing/Runtime/Models/FogModel.cs
+Assets/PostProcessing/Runtime/Models/GrainModel.cs
+Assets/PostProcessing/Runtime/Models/MotionBlurModel.cs
+Assets/PostProcessing/Runtime/Models/ScreenSpaceReflectionModel.cs
+Assets/PostProcessing/Runtime/Models/UserLutModel.cs
+Assets/PostProcessing/Runtime/Models/VignetteModel.cs
+Assets/PostProcessing/Runtime/PostProcessingBehaviour.cs
+Assets/PostProcessing/Runtime/PostProcessingComponent.cs
+Assets/PostProcessing/Runtime/PostProcessingContext.cs
+Assets/PostProcessing/Runtime/PostProcessingModel.cs
+Assets/PostProcessing/Runtime/PostProcessingProfile.cs
+Assets/PostProcessing/Runtime/Utils/ColorGradingCurve.cs
+Assets/PostProcessing/Runtime/Utils/GraphicsUtils.cs
+Assets/PostProcessing/Runtime/Utils/MaterialFactory.cs
+Assets/PostProcessing/Runtime/Utils/RenderTextureFactory.cs
+Assets/PostProcessing/Utilities/CustomMotionTexture/ExampleWheelController.cs
+Assets/Scenes/OptionScene/ValueSet.cs
+Assets/Scripts/CameraController.cs
+Assets/Scripts/Catcher.cs
+Assets/Scripts/Center.cs
+Assets/Scripts/ColorCountText.cs
+Assets/Scripts/ComboText.cs
+Assets/Scripts/CountDownText.cs
+Assets/Scripts/CubeCell.cs
+Assets/Scripts/CubeFX.cs
+Assets/Scripts/CubeSound.cs
+Assets/Scripts/ExpBar.cs
+Assets/Scripts/FaceSelectIndicator.cs
+Assets/Scripts/Fade.cs
+Assets/Scripts/GameManager.cs
+Assets/Scripts/InputHandle.cs
+Assets/Scripts/LevelText.cs
+Assets/Scripts/Lights.cs
+Assets/Scripts/LimitTimeText.cs
+Assets/Scripts/MagicCube.cs
+Assets/Scripts/MatchedCountText.cs
+Assets/Scripts/MusicPlayer.cs
+Assets/Scripts/NowTurnText.cs
+Assets/Scripts/Pause.cs
+Assets/Scripts/RandomLightUp.cs
+Assets/Scripts/RankScene/RankingManager.cs
+Assets/Scripts/Result/MoveScene.cs
+Assets/Scripts/Result/ResultText.cs
+Assets/Scripts/ScoreParticleInstance.cs
+Assets/Scripts/ScoreParticles.cs
+Assets/Scripts/ScoreText.cs
+Assets/Scripts/SelectBoxController.cs
+Assets/Scripts/SkyBoxStyle.cs
+Assets/Scripts/TextController.cs
+Assets/Scripts/Title/CreditButton.cs
+Assets/Scripts/Title/GameLoad.cs
+Assets/Scripts/Title/Gizmo.cs
+Assets/Scripts/Title/GradationController.cs
+Assets/Scripts/Title/Logo_Script.cs
+Assets/Scripts/Title/MoviePlayer.cs
+Assets/Scripts/Title/ObjectTracker.cs
+Assets/Scripts/Title/ResolutionButton.cs
+Assets/Scripts/Title/Select.cs
+Assets/Scripts/Title/SelectButton.cs
+Assets/Scripts/Title/SelectCube.cs
+Assets/Scripts/Title/TitleLowpolyGlow.cs
+Assets/Scripts/Title/TitleManager.cs
+Assets/Scripts/Title/TitleSound.cs
+Assets/Scripts/Title/TutorialImageChange.cs
+Assets/Scripts/Title/TutorialSelButton.cs
+Assets/Scripts/VariableColourParticleFX.cs
+-r:"F:\More Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\System.Runtime.Serialization.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\System.Xml.Linq.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\UnityScript.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\UnityScript.Lang.dll"
+-r:"F:\More Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\Boo.Lang.dll"
+-sdk:4.6
