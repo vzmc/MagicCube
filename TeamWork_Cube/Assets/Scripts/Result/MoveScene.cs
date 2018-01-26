@@ -13,12 +13,16 @@ public class MoveScene : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.Space)&&SceneManager.GetActiveScene().name=="PlayScene")
+	void Update ()
+    {
+        if (Debug.isDebugBuild)
         {
-            ToScene("ResultScene");
+            if (Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name == "PlayScene")
+            {
+                ToScene("ResultScene");
+            }
         }
-	}
+    }
 
     public void ToNextScene()
     {

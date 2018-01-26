@@ -36,7 +36,11 @@ namespace UnityStandardAssets.CrossPlatformInput
         void Start()
         {
             m_StartPos = transform.position;
-            Debug.Log(m_StartPos);
+
+            if (Debug.isDebugBuild)
+            {
+                Debug.Log(m_StartPos);
+            }
         }
         
 
@@ -103,7 +107,11 @@ namespace UnityStandardAssets.CrossPlatformInput
             deltaH = Mathf.Clamp(H,MovementRange * Mathf.Cos(angle), MovementRange * Mathf.Cos(angle));
             deltaV = Mathf.Clamp(V, MovementRange * Mathf.Sin(angle), MovementRange * Mathf.Sin(angle));
 
-            Debug.Log(angle);
+            if (Debug.isDebugBuild)
+            {
+                Debug.Log(angle);
+            }
+
             newPos = new Vector3(deltaH, deltaV, 0);
             transform.position = new Vector3(m_StartPos.x + deltaH, m_StartPos.y + deltaV, m_StartPos.z + 0);
             UpdateVirtualAxes(transform.position);
