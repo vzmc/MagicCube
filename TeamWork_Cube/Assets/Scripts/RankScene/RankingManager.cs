@@ -61,8 +61,10 @@ public class RankingManager : MonoBehaviour
     private IEnumerator LoadRanking_Global()
     {
         //スコア表示処理が終わる前、リセットボタンを無効化
-        resetButton.interactable = false;
-        backButton.interactable = false;
+
+        //応急処置->リセットボタンを無効化をなしに
+        //resetButton.interactable = false;
+        //backButton.interactable = false;
 
         logText.text = "now loading";
 
@@ -104,11 +106,6 @@ public class RankingManager : MonoBehaviour
                 so["date"] = PlayerPrefs.GetString("date"); //24時間制
                 yield return so.SaveAsync();
             }
-
-            //応急処置
-            resetButton.interactable = true;
-            backButton.interactable = true;
-
         }
 
 
