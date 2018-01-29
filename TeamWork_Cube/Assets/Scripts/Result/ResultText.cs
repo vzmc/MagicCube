@@ -31,6 +31,14 @@ public class ResultText : MonoBehaviour
 
     private bool isInternetActive = false;
 
+    private InternetConnect connect;
+
+
+    void Awake()
+    {
+        connect = GetComponent<InternetConnect>();
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -41,7 +49,15 @@ public class ResultText : MonoBehaviour
         }
         else
         {
-            isInternetActive = true;
+            if (connect.connectResult)
+            {
+                isInternetActive = true;
+            }
+            else
+            {
+                isInternetActive = false;
+            }
+
         }
 
         textAlpha = 0;

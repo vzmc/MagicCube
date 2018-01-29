@@ -1,75 +1,72 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System.Net;
+using System;
+using System.IO;
 
 public class InternetConnect : MonoBehaviour
 {
-    public int nStatus;
-    public const int NotReachable = 0;                   // ネットなし
-    public const int ReachableViaLocalAreaNetwork = 1;   // Wifi,ケーブル。
-    public const int ReachableViaCarrierDataNetwork = 2; // 3G,4G。
+    public bool connectResult;
 
-    // Use this for initialization
-    void Start()
+
+    public string GetHtmlFromUri(string resource)
     {
-        // IPhone, Android
-        nStatus = ConnectionStatus();
-
-        if (Debug.isDebugBuild)
-            Debug.Log("ConnectionStatus : " + nStatus);
-
-        if (nStatus > 0)
-            if (Debug.isDebugBuild)
-                Debug.Log("ネット繋げる");
-        else
-            if (Debug.isDebugBuild)
-                Debug.Log("ネット繋げない");
-
-        this.StartCoroutine(PingConnect());
-    }
-
-    public static int ConnectionStatus()
-    {
-        int status;
-
-        if (Application.internetReachability == NetworkReachability.NotReachable)
-            status = NotReachable;
-        else if (Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork)
-            status = ReachableViaLocalAreaNetwork;
-        else if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)
-            status = ReachableViaCarrierDataNetwork;
-        else
-            status = -1;
-
-        return status;
-    }
-
-    IEnumerator PingConnect()
-    {
-        //Google IP
-        string googleJP = "172.217.25.100";
-
-        //Ping
-        Ping ping = new Ping(googleJP);
-
-        int nTime = 0;
-
-        while (!ping.isDone)
+        string html = string.Empty;
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(resource);
+        try
         {
-            yield return new WaitForSeconds(0.1f);
-
-            if (nTime > 20) // time 2 sec, OverTime
+            using (HttpWebResponse resp = (HttpWebResponse)req.GetResponse())
             {
-                nTime = 0;
-                if (Debug.isDebugBuild)
-                    Debug.Log("ネット繋げない : " + ping.time);
-            }
-            nTime++;
-        }
-        yield return ping.time;
+                bool isSuccess = (int)resp.StatusCode < 299 && (int)resp.StatusCode >= 200;
+                if (isSuccess)
+                {
 
-        if (Debug.isDebugBuild)
-            Debug.Log("ネット繋げる");
+                    using (TextReader reader = new StreamReader(resp.GetResponseStream()))
+                    {
+                        //We are limiting the array to 80 so we don't have
+                        //to parse the entire html document feel free to 
+                        //adjust (probably stay under 300)
+                        char[] cs = new char[80];
+                        reader.Read(cs, 0, cs.Length);
+                        foreach (char ch in cs)
+                        {
+                            html += ch;
+                        }
+                    }
+                }
+            }
+        }
+        catch
+        {
+            return "";
+        }
+        return html;
+    }
+    void Awake()
+    {
+        string HtmlText = GetHtmlFromUri("http://google.com");
+        if (HtmlText == "")
+        {
+            //No connection
+            if (Debug.isDebugBuild)
+                Debug.Log("Connection Not Found");
+
+            connectResult = false;
+        }
+        else
+        {
+            //success
+            if (Debug.isDebugBuild)
+                Debug.Log("Connection Found");
+
+            connectResult = true;
+        }
+
+        StartCoroutine(WaitSeconds(3f));
     }
 
+    IEnumerator WaitSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+    }
 }

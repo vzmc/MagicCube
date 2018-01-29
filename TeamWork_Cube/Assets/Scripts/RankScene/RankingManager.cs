@@ -32,21 +32,46 @@ public class RankingManager : MonoBehaviour
 
     private bool isInternetActive = false;
 
-    //private InternetConnect connect;
+    private InternetConnect connect;
 
+
+    void Awake()
+    {
+        connect = GetComponent<InternetConnect>();
+    }
     // Use this for initialization
     void Start()
-    {    
+    {
         //180122　ネットワーク状態
         if (Application.internetReachability == NetworkReachability.NotReachable) 
         {
             isInternetActive = false;
+
+            if (Debug.isDebugBuild)
+                Debug.Log(isInternetActive);
+
             LoadRanking_Local();
         }
         else
         {
-            isInternetActive = true;
-            StartCoroutine(LoadRanking_Global());
+            if (connect.connectResult)
+            {
+                isInternetActive = true;
+
+                if (Debug.isDebugBuild)
+                    Debug.Log(isInternetActive);
+
+                StartCoroutine(LoadRanking_Global());
+            }
+            else
+            {
+                isInternetActive = false;
+
+                if (Debug.isDebugBuild)
+                    Debug.Log(isInternetActive);
+
+                LoadRanking_Local();
+            }
         }
     }
 
@@ -63,8 +88,8 @@ public class RankingManager : MonoBehaviour
         //スコア表示処理が終わる前、リセットボタンを無効化
 
         //応急処置->リセットボタンを無効化をなしに
-        //resetButton.interactable = false;
-        //backButton.interactable = false;
+        resetButton.interactable = false;
+        backButton.interactable = false;
 
         logText.text = "now loading";
 
