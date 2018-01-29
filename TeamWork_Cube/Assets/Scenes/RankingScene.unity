@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11402605, g: 0.048103936, b: 0.20777261, a: 1}
+  m_IndirectSpecularColor: {r: 0.25175285, g: 0.056552112, b: 0.3306034, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1582,6 +1582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1025539836}
   - component: {fileID: 1025539835}
+  - component: {fileID: 1025539837}
   m_Layer: 0
   m_Name: RankingManager
   m_TagString: Untagged
@@ -1641,6 +1642,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1025539837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1025539834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39282a5570756294c9405af81d2f68b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nStatus: 0
 --- !u!1 &1056368986
 GameObject:
   m_ObjectHideFlags: 0

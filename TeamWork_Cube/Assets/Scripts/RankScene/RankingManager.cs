@@ -32,9 +32,11 @@ public class RankingManager : MonoBehaviour
 
     private bool isInternetActive = false;
 
+    //private InternetConnect connect;
+
     // Use this for initialization
     void Start()
-    {
+    {    
         //180122　ネットワーク状態
         if (Application.internetReachability == NetworkReachability.NotReachable) 
         {
@@ -102,6 +104,11 @@ public class RankingManager : MonoBehaviour
                 so["date"] = PlayerPrefs.GetString("date"); //24時間制
                 yield return so.SaveAsync();
             }
+
+            //応急処置
+            resetButton.interactable = true;
+            backButton.interactable = true;
+
         }
 
 
