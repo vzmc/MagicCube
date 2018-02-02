@@ -1,4 +1,4 @@
-WindowsStandalone
+Android
 SceneListBegin?
 Assets/Scenes/Title.unity
 Assets/Scenes/PlayScene.unity
@@ -207,3 +207,4 @@ a8796ecdc9d5c260bbe32f30c4b10708 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 de43c046801e0a539a89d531e39256bc Assembly-CSharp.dll:.GameLoad
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SelectBoxController
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TutorialSelButton
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TimeZoneDebugTest

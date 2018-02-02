@@ -151,7 +151,9 @@ public class RankingManager : MonoBehaviour
             childScore[dispRank].text = so["hiscore"].ToString();
 
             DateTime dt = DateTime.Parse(dtString); // 2017/12/22 Holmes
-            childDate[dispRank].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
+            //TimeZone currentTimeZone = TimeZone.CurrentTimeZone;
+            //childDate[dispRank].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
+            childDate[dispRank].text = TimeZoneInfo.ConvertTime(dt,TimeZoneInfo.Utc, TimeZoneInfo.Local).ToString("yyyy/MM/dd HH:mm");
 
             //自分のスコアを赤くするために、idでチェック
             if (so["id"] as string == SpreadSheetSetting.Instance.UniqueID)
@@ -398,7 +400,9 @@ public class RankingManager : MonoBehaviour
             else
             {
                 DateTime dt = DateTime.Parse(PlayerPrefs.GetString("date"));
-                personalRecord[2].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
+                personalRecord[2].text = TimeZoneInfo.ConvertTime(dt, TimeZoneInfo.Utc, TimeZoneInfo.Local).ToString("yyyy/MM/dd HH:mm");
+
+                //personalRecord[2].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
             }
         }
 
