@@ -14,10 +14,13 @@ public class TimeZoneDebugTest : MonoBehaviour {
         //text.text = TimeZoneInfo.ConvertTime(dt,TimeZoneInfo.Utc, TimeZoneInfo.Local).ToString("yyyy/MM/dd HH:mm");
         jpTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
         waTimeZone = TimeZoneInfo.FindSystemTimeZoneById("W. Australia Standard Time");
+
+        string t = TimeZoneInfo.Local.Id;
+        Debug.Log(t);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         
         text.text = DateTime.UtcNow + " (" + TimeZoneInfo.Utc.ToString() + ")" + ",\n" +
             TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, jpTimeZone) + " (" + jpTimeZone.ToString() + "),\n" +
