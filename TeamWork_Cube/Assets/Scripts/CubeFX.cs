@@ -23,6 +23,7 @@ public class CubeFX : MonoBehaviour
     {
         VariableColourParticleFX prefabInstance = Instantiate(FXPrefab, transform.position, transform.rotation);
         prefabInstance.TriggerFX(rendererInstance.material.color);
+        Destroy(prefabInstance.gameObject, 2);
         //foreach (var s in ps)
         //{
         //    Color c = rendererInstance.material.color;

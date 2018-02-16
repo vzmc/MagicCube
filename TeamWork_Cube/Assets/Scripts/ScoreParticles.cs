@@ -28,6 +28,7 @@ public class ScoreParticles : MonoBehaviour {
         {
             ScoreParticleInstance particleInstance = Instantiate(ParticlePrefab, CubePositionOnScreen, Quaternion.identity, transform.parent);
             particleInstance.SetColour(matchedCube.GetMaterial().color);
+            Destroy(particleInstance.gameObject, 1);
         }
         //particleInstance.target = ScoreGauge.transform;
     }
