@@ -151,11 +151,13 @@ public class RankingManager : MonoBehaviour
             childScore[dispRank].text = so["hiscore"].ToString();
 
             DateTime dt = DateTime.Parse(dtString); // 2017/12/22 Holmes
-            //TimeZone currentTimeZone = TimeZone.CurrentTimeZone;
-            //childDate[dispRank].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
+                                                    //TimeZone currentTimeZone = TimeZone.CurrentTimeZone;
+                                                    //childDate[dispRank].text = dt.ToLocalTime().ToString("yyyy/MM/dd HH:mm");
+#if(UNITY_ANDROID)
             childDate[dispRank].text = dt.AddHours(9).ToString("yyyy/MM/dd HH:mm");//強制UTC+9にする
-            //childDate[dispRank].text = TimeZoneInfo.ConvertTime(dt, TimeZoneInfo.Utc, TimeZoneInfo.Local).ToString("yyyy/MM/dd HH:mm");
-
+#else
+            childDate[dispRank].text = TimeZoneInfo.ConvertTime(dt, TimeZoneInfo.Utc, TimeZoneInfo.Local).ToString("yyyy/MM/dd HH:mm");
+#endif
 
             //自分のスコアを赤くするために、idでチェック
             if (so["id"] as string == SpreadSheetSetting.Instance.UniqueID)
@@ -402,9 +404,11 @@ public class RankingManager : MonoBehaviour
             else
             {
                 DateTime dt = DateTime.Parse(PlayerPrefs.GetString("date"));
-                //personalRecord[2].text = TimeZoneInfo.ConvertTime(dt, TimeZoneInfo.Utc, TimeZoneInfo.Local).ToString("yyyy/MM/dd HH:mm");
-
+#if(UNITY_ANDROID)
                 personalRecord[2].text = dt.AddHours(9).ToString("yyyy/MM/dd HH:mm");//強制UTC+9にする
+#else
+                personalRecord[2].text = TimeZoneInfo.ConvertTime(dt, TimeZoneInfo.Utc, TimeZoneInfo.Local).ToString("yyyy/MM/dd HH:mm");
+#endif
             }
         }
 
